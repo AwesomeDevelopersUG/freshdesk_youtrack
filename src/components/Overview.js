@@ -28,7 +28,7 @@ class IssueList extends React.Component {
 class CreateIssueButton extends React.Component {
 
     render() {
-        return <button onClick={this.onCreateIssue.bind(this)}>Create New Issue</button>
+        return <button className="button primary" onClick={this.onCreateIssue.bind(this)}>Create New Issue</button>
     }
 
     // This will have to be replaced
@@ -58,7 +58,7 @@ class LoginForm extends React.Component {
             {this.state.fail && <p style={{color: '#b71c1c'}}>Invalid Credentials</p>}
             <label for="login">User:</label><input type="text" name="login" onChange={(e) => {this.setState({name: e.target.value})}}/><br />
             <label for="password">Password:</label><input type="password" name="password" onChange={(e) => {this.setState({pass: e.target.value})}}/><br />
-            <input type="submit" value="Login"/>
+            <input className="button primary" type="submit" value="Login"/>
         </form>
     }
 
