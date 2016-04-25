@@ -113,12 +113,7 @@ export default class IssueOverview extends React.Component {
     }
 
     componentWillMount() {
-        this.state.client.getFavicon().then((result) => {
-            console.info(result);
-        })
-            
-        
-        
+
         this.state.client.getTickets(this.props.ticketId).then((result) => {
             this.setState({
                 loading: false,

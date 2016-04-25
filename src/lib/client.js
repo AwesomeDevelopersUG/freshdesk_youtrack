@@ -9,11 +9,6 @@ export default class Client {
         axios.defaults.baseURL = this.root;
     }
 
-    getFavicon() {
-        return axios.get('/favicon.ico');
-    }
-
-
     login(user, pass) {
         return axios.post('/rest/user/login', querystring.stringify({
             login: user,
