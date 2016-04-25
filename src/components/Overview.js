@@ -144,7 +144,7 @@ export default class IssueOverview extends React.Component {
     render() {
         return <div style={{ fontFamily: 'sans-serif'}}>
             <div>
-                <img style={{ height: '32px', width: '32px', display: 'inline-block'}} src={require('img/yt.png')} />
+                <img style={{ height: '32px', width: '32px', display: 'inline-block'}} src={require('url?mimetype=image/png!img/yt.png')} />
                 <h3 style={{ lineHeight: '32px', display: 'inline-block', margin: '0 0 0 10px', verticalAlign: 'top'}}>YouTrack</h3>
             </div>
             {this.state.loading ?
@@ -156,7 +156,7 @@ export default class IssueOverview extends React.Component {
                 this.state.loggedIn ?
                     <div>
                         <IssueList issues={this.state.issues} client={this.state.client}/>
-                        <CreateIssueButton />
+                        <CreateIssueButton style={{ marginTop: '10px'}}/>
                     </div>
                 :
                     <LoginForm client={this.state.client} onLoggedIn={this.onLoggedIn.bind(this)}/>

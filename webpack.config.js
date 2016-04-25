@@ -22,10 +22,10 @@ var config = {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
             },
-            {
-                test: /\.(png|jpg|gif|json|mp4|webm)/,
-                loader: 'file-loader?name=[hash:hex].[ext]'
-            },
+            // {
+            //     test: /\.(png|jpg|gif|json|mp4|webm)/,
+            //     loader: 'file-loader?name=[hash:hex].[ext]'
+            // },
             {
                 test: /\.(woff|eot|svg|ttf)/,
                 loader: 'file-loader?name=[hash:hex].[ext]'
