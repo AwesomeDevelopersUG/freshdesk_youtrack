@@ -28,7 +28,7 @@ class IssueList extends React.Component {
 class CreateIssueButton extends React.Component {
 
     render() {
-        return <button className="button primary" onClick={this.onCreateIssue.bind(this)}>Create New Issue</button>
+        return <button style={this.props.style} className="button primary" onClick={this.onCreateIssue.bind(this)}>Create New Issue</button>
     }
 
     // This will have to be replaced
@@ -143,7 +143,7 @@ export default class IssueOverview extends React.Component {
 
     render() {
         return <div style={{ fontFamily: 'sans-serif'}}>
-            <div>
+            <div style={{ marginBottom: '10px' }}>
                 <img style={{ height: '32px', width: '32px', display: 'inline-block'}} src={require('url?mimetype=image/png!img/yt.png')} />
                 <h3 style={{ lineHeight: '32px', display: 'inline-block', margin: '0 0 0 10px', verticalAlign: 'top'}}>YouTrack</h3>
             </div>
