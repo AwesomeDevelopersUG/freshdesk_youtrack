@@ -28,7 +28,7 @@ Paste this piece of code as the Freshdesk custom app (FreshPlug)
   <script>
     (function() {
       var a = document.createElement("script");
-      a.src = "http://cdn.rawgit.com/AwesomeDevelopersUG/freshdesk_youtrack/master/dist/app.js";
+      a.src = "https://cdn.rawgit.com/AwesomeDevelopersUG/freshdesk_youtrack/v1.0/dist/app.js";
       document.getElementsByTagName("head")[0].appendChild(a)
 	})()
   </script>
