@@ -11,6 +11,13 @@ Prerequisies
 * Have a field in YouTrack, numeric or string type, where you store the ticket id of a Freshdesk ticket
 
 
+Features
+========
+
+* Display a list of linked issues, their status (resolved or not) and spent time
+* Create a new issue in YouTrack, linked with the current open Freshdesk ticket
+
+
 How to use
 ==========
 
