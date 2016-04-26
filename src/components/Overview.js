@@ -1,3 +1,10 @@
+/**
+ * © Awesome Developers UG, 2016
+ *
+ * You may use this software for your own purposes, as you wish. You may not use it directly for any commercial purpose,
+ * that is, you are not allowed to distribute this code in any direct for-profit manner.
+ */
+
 'use strict';
 import React from 'react';
 

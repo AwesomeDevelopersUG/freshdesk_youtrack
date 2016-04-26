@@ -27,6 +27,6 @@
     "tc_version": "node src/bin/tc_version.js",
     "build_production": "node node_modules/webpack/bin/webpack.js --config webpack.config.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Awesome Developers UG",
+  "license": "see LICENSE"
 }
