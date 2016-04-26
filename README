@@ -35,3 +35,21 @@ There are three data attributes:
 * data-yt-url: Url of your issue tracker, e.g. https://issues.company.com/
 * data-fdesk-ticket: This is the placeholder to be replaced by Freshdesk on ticket edit page
 * data-fdesk-field: Name of the field in YouTrack that references the freshdesk issue (e.g. Freshdesk).
+
+Development
+===========
+
+If you wish to develop this further, just:
+
+* close
+* npm install
+* npm start (app is now served on port 3000)
+
+To build the updated app: npm build_production
+
+
+Contributions
+=============
+
+Very welcome, this has been put together very quickly, so the code is not especially nice. It works though.
+
