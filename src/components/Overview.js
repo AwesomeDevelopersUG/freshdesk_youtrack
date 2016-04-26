@@ -16,8 +16,8 @@ class IssueList extends React.Component {
 
         return <ul style={{ paddingLeft: 0, listStyleType: 'none' }}>
             {this.props.issues.map((el, idx) => (
-                <li key={idx}>
-                    <a target='_blank' href={this.props.client.getUrlForIssue(el.id)}>{el.id}: {el.summary}</a>
+                <li key={idx} style={{textDecoration: el.resolved ? 'line-through': 'none'}}>
+                    <a target='_blank' href={this.props.client.getUrlForIssue(el.id)} style={{color: el.resolved ? '#ababab': 'darkblue'}}>{el.id}: {el.summary}</a>
                     <span style={{ float: 'right'}}>{el.spent !== null ? el.spent : '0m'}</span>
                 </li>
             ))}
@@ -103,7 +103,8 @@ export default class IssueOverview extends React.Component {
             data.push({
                 id: el.id,
                 summary: this._findField(el, 'summary'),
-                spent: this._findField(el, 'Spent time', 'valueId') && this._findField(el, 'Spent time', 'valueId')[0]
+                spent: this._findField(el, 'Spent time', 'valueId') && this._findField(el, 'Spent time', 'valueId')[0],
+                resolved: this._findField(el, 'resolved') !== null
             })
         });
         return data;
