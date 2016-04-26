@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Client from 'lib/client';
+import IssueEditor from './IssueEditor';
 
 class IssueList extends React.Component {
 
@@ -17,7 +18,7 @@ class IssueList extends React.Component {
             {this.props.issues.map((el, idx) => (
                 <li key={idx}>
                     <a target='_blank' href={this.props.client.getUrlForIssue(el.id)}>{el.id}: {el.summary}</a>
-                    <span style={{ float: 'right'}}>{el.spent}</span>
+                    <span style={{ float: 'right'}}>{el.spent !== null ? el.spent : '0m'}</span>
                 </li>
             ))}
         </ul>
@@ -28,15 +29,11 @@ class IssueList extends React.Component {
 class CreateIssueButton extends React.Component {
 
     render() {
-        return <button style={this.props.style} className="button primary" onClick={this.onCreateIssue.bind(this)}>Create New Issue</button>
-    }
-
-    // This will have to be replaced
-    onCreateIssue() {
-        let e = document.createElement('script');
-        e.setAttribute('type', 'text/javascript');
-        e.setAttribute('src', 'https:\/\/youtrack.awesomedevelopers.eu\/_resources\/js\/charisma-bookmarklet-min.js');
-        document.body.appendChild(e);
+        return <button
+            style={this.props.style}
+            className="button primary"
+            onClick={this.props.onCreateIssue}>Create New Issue
+        </button>
     }
 }
 
@@ -84,7 +81,7 @@ export default class IssueOverview extends React.Component {
             loading: true,
             loggedIn: false,
             issues: [],
-            client: new Client(this.props.rootUrl)
+            client: new Client(this.props.rootUrl, this.props.fdeskField)
         }
     }
 
@@ -112,12 +109,13 @@ export default class IssueOverview extends React.Component {
         return data;
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         this.state.client.getTickets(this.props.ticketId).then((result) => {
             this.setState({
                 loading: false,
                 loggedIn: true,
+                editOpen: false,
                 issues: this._parseIssues(result.data.issue)
             });
         }).catch((err) => {
@@ -156,7 +154,13 @@ export default class IssueOverview extends React.Component {
                 this.state.loggedIn ?
                     <div>
                         <IssueList issues={this.state.issues} client={this.state.client}/>
-                        <CreateIssueButton style={{ marginTop: '10px'}}/>
+                        <CreateIssueButton style={{ marginTop: '10px'}} onCreateIssue={() => {this.setState({editOpen: true})}} />
+                        <IssueEditor
+                            open={this.state.editOpen}
+                            client={this.state.client}
+                            ticketId={this.props.ticketId}
+                            onRequestClose={() => {this.setState({editOpen: false})}}
+                            onSuccess={this.onTicketSubmitSuccess.bind(this)}/>
                     </div>
                 :
                     <LoginForm client={this.state.client} onLoggedIn={this.onLoggedIn.bind(this)}/>
@@ -170,6 +174,20 @@ export default class IssueOverview extends React.Component {
             loggedIn: true,
             loading: true
         });
+        this.state.client.getTickets(this.props.ticketId).then((result) => {
+            this.setState({
+                loading: false,
+                issues: this._parseIssues(result.data.issue)
+            });
+        })
+    }
+
+    onTicketSubmitSuccess() {
+        this.setState({
+            editOpen: false,
+            loading: true
+        });
+
         this.state.client.getTickets(this.props.ticketId).then((result) => {
             this.setState({
                 loading: false,
