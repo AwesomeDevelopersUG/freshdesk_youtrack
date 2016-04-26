@@ -106,7 +106,7 @@ export default class IssueOverview extends React.Component {
             data.push({
                 id: el.id,
                 summary: this._findField(el, 'summary'),
-                spent: this._findField(el, 'Spent time', 'valueId')[0]
+                spent: this._findField(el, 'Spent time', 'valueId') && this._findField(el, 'Spent time', 'valueId')[0]
             })
         });
         return data;
